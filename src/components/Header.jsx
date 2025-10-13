@@ -109,7 +109,7 @@ const Header = () => {
         >
             <HeaderContent>
                 <Logo whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} theme={theme}>
-                    Tharushika Rukshani
+                    TR
                 </Logo>
 
                 <Nav>
