@@ -337,7 +337,7 @@ const Projects = () => {
       status: "recent",
       description: "Modern social media platform with real-time chat, posts, stories, and user engagement features. Integrated authentication and media optimization.",
       tech: ["React.js", "Clerk Auth", "Supabase", "Node.js", "Express.js", "MongoDB"],
-      demoLink: "#",
+      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110_my_sliit_lk%2FDocuments%2FRecording-20251013_184432%2Ewebm&nav=%7B"defaultNavPanel"%3A%7B"pluginName"%3A"MediaSettingsLayer"%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Edcad44e4-fc08-41c5-ba66-784f87726ff2',
       codeLink: "https://github.com/Tharushika251/Pingy",
       gradient: "linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD)",
       imageUrl: "/projects/pingy.png"
@@ -349,7 +349,7 @@ const Projects = () => {
       status: "recent",
       description: "Role-based quiz platform for teachers and students with real-time timers, performance analytics, and global leaderboards.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
-      demoLink: "#",
+      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110_my_sliit_lk%2FDocuments%2FRecording-20251013_193410%2Ewebm&nav=%7B"defaultNavPanel"%3A%7B"pluginName"%3A"MediaSettingsLayer"%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E61ee40de-0a35-4e5d-9c4b-c700da41b558',
       codeLink: "https://github.com/Tharushika251/AcademIQ",
       gradient: "linear-gradient(135deg, #8B5CF6, #A78BFA, #C4B5FD)",
       imageUrl: "/projects/academiq.png"
@@ -361,7 +361,7 @@ const Projects = () => {
       status: "completed",
       description: "Microservices-based food ordering and delivery system with containerization, Kubernetes orchestration, and role-based authentication.",
       tech: ["React.js", "Node.js", "Docker", "Kubernetes", "MongoDB", "Supabase"],
-      demoLink: "#",
+      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110%5Fmy%5Fsliit%5Flk%2FDocuments%2FRecording%2D20251006%5F032606%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E04a823cc%2D9302%2D4af5%2D9cb5%2D7d3bd48269af',
       codeLink: "https://github.com/Tharushika251/Foodie",
       gradient: "linear-gradient(135deg, #EC4899, #F472B6, #F9A8D4)",
       imageUrl: "/projects/foodie.png"
@@ -373,7 +373,7 @@ const Projects = () => {
       status: "completed",
       description: "Responsive React application integrating REST Countries API with detailed country views, search functionality, and user session management.",
       tech: ["React.js", "REST API", "CSS3", "Local Storage"],
-      demoLink: "#",
+      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110_my_sliit_lk%2FDocuments%2FRecording-20251013_175416%2Ewebm&nav=%7B"defaultNavPanel"%3A%7B"pluginName"%3A"MediaSettingsLayer"%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E3394ea60-e6e0-4946-a05b-239c7c29120a',
       codeLink: "https://github.com/Tharushika251/Rest_Countries_API",
       gradient: "linear-gradient(135deg, #10B981, #34D399, #6EE7B7)",
       imageUrl: "/projects/restCountriesAPI.png"
