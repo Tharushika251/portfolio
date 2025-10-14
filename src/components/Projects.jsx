@@ -325,7 +325,7 @@ const Projects = () => {
       status: "current",
       description: "Full-stack client-server EV Charging Station Booking System with enterprise-grade specifications. Features user management, charging station operations, and booking lifecycle management.",
       tech: ["C# (.NET)", "Web API", "MongoDB", "React.js", "Bootstrap", "IIS", "Android", "SQLite"],
-      demoLink: "#",
+      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110%5Fmy%5Fsliit%5Flk%2FDocuments%2FRecording%2D20251014%5F113226%2Ewebm&nav=%7B%22defaultNavPanel%22%3A%7B%22pluginName%22%3A%22MediaSettingsLayer%22%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ec1c14768%2Dba42%2D4007%2D91e9%2D2ebcbbb624ca',
       codeLink: "https://github.com/Tharushika251/EVConnect",
       gradient: "linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)",
       imageUrl: "/projects/evconnect.png"
