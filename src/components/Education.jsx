@@ -290,7 +290,7 @@ const Education = () => {
         details: "Specializing in Software Engineering | GPA - 3.0",
         duration: "July 2022 - May 2026",
         status: "Coursework Completed",
-        description: "Completed coursework in software engineering, full-stack development, database management, and cloud computing. Final exam results pending, convocation in September/October 2026.",
+        description: "Completed coursework in software engineering, full-stack development, database management, and cloud computing. Convocation in September/October 2026.",
         logo: "/institutes/sliit-logo.png"
       }
     ],
