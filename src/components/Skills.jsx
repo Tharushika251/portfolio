@@ -1,4 +1,3 @@
-// src/components/Skills.jsx
 import React from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
@@ -29,7 +28,7 @@ const SkillsSection = styled.section`
     right: 0;
     height: 4px;
     background: ${({ theme, isDarkMode }) =>
-    isDarkMode ? theme.gradient : 'linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)'};
+      isDarkMode ? theme.gradient : 'linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)'};
     border-radius: 20px 20px 0 0;
   }
 `
@@ -52,7 +51,7 @@ const SectionTitle = styled(motion.h2)`
     width: 100px;
     height: 5px;
     background: ${({ theme, isDarkMode }) =>
-    isDarkMode ? theme.gradient : 'linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)'};
+      isDarkMode ? theme.gradient : 'linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)'};
     border-radius: 3px;
   }
 
@@ -110,9 +109,9 @@ const CategoryTitle = styled.h3`
 
 const SkillsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, 120px); /* fixed width per item */
-  justify-content: center; /* center items */
-  gap: 1rem; /* gap between items */
+  grid-template-columns: repeat(auto-fit, 120px);
+  justify-content: center;
+  gap: 1rem;
 
   @media (max-width: 1024px) {
     gap: 0.8rem;
@@ -132,13 +131,13 @@ const SkillItem = styled(motion.div)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem; /* space between icon and name */
-  padding: 0.8rem; /* inner padding, responsive */
+  gap: 0.4rem;
+  padding: 0.8rem;
   background: ${({ theme }) => theme.body};
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.card}33;
   cursor: pointer;
-  width: 100%;  
+  width: 100%;
   max-width: 120px;
   height: 50px;
   transition: all 0.3s ease;
@@ -206,49 +205,121 @@ const SkillName = styled.span`
   }
 `
 
+// Soft Skills Component
+const SoftSkillsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`
+
+const SoftSkillTag = styled(motion.span)`
+  background: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid ${({ theme }) => theme.primary}33;
+  transition: all 0.3s ease;
+  cursor: default;
+
+  &:hover {
+    background: ${({ theme }) => theme.primary};
+    color: white;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px ${({ theme }) => theme.primary}40;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+`
+
 const Skills = () => {
   const { theme, isDarkMode } = useTheme()
 
+  // Updated skills based on CV
   const skillsData = [
     {
-      category: 'Frontend & Languages',
+      category: 'Frontend Development',
       skills: [
-        { name: 'HTML', icon: '/svgs/html.svg' },
-        { name: 'CSS', icon: '/svgs/css.svg' },
+        { name: 'HTML5', icon: '/svgs/html.svg' },
+        { name: 'CSS3', icon: '/svgs/css.svg' },
         { name: 'JavaScript', icon: '/svgs/javascript.svg' },
         { name: 'TypeScript', icon: '/svgs/typescript.svg' },
-        { name: 'PHP', icon: '/svgs/php.svg' },
         { name: 'React.js', icon: '/svgs/react.svg' },
+        { name: 'Bootstrap', icon: '/svgs/bootstrap.svg' },
+        { name: 'Tailwind CSS', icon: '/svgs/tailwind.svg' },
       ],
     },
     {
-      category: 'Backend & Databases',
+      category: 'Backend Development',
       skills: [
         { name: 'Node.js', icon: '/svgs/nodejs.svg' },
         { name: 'Express.js', icon: '/svgs/express.svg' },
-        { name: 'MongoDB', icon: '/svgs/mongodb.svg' },
-        { name: 'MySQL', icon: '/svgs/mysql.svg' },
-        { name: 'Supabase', icon: '/svgs/supabase.svg' },
-        { name: '.NET', icon: '/svgs/dotnet.svg' }, // ✅ Added .NET
+        { name: 'Spring Boot', icon: '/svgs/spring.svg' },
+        { name: 'Laravel', icon: '/svgs/laravel.svg' },
+        { name: '.NET', icon: '/svgs/dotnet.svg' },
+        { name: 'PHP', icon: '/svgs/php.svg' },
+        { name: 'Java', icon: '/svgs/java.svg' },
       ],
     },
     {
-      category: 'Mobile & Tools',
+      category: 'Database & Cloud',
       skills: [
-        { name: 'React Native', icon: '/svgs/react.svg' },
+        { name: 'MongoDB', icon: '/svgs/mongodb.svg' },
+        { name: 'MySQL', icon: '/svgs/mysql.svg' },
+        { name: 'Supabase', icon: '/svgs/supabase.svg' },
+        { name: 'SQLite', icon: '/svgs/sqlite.svg' },
+        { name: 'Docker', icon: '/svgs/docker.svg' },
+        { name: 'IIS', icon: '/svgs/iis.svg' },
+      ],
+    },
+    {
+      category: 'Mobile Appliction Development',
+      skills: [
         { name: 'Android Studio', icon: '/svgs/android-studio.svg' },
-        { name: 'Bootstrap', icon: '/svgs/bootstrap.svg' },
-        { name: 'Tailwind', icon: '/svgs/tailwind.svg' },
-        { name: 'VS Code', icon: '/svgs/vscode.svg' },
-        { name: 'Visual Studio', icon: '/svgs/visual-studio.svg' },
-        { name: 'IntelliJ', icon: '/svgs/intellij.svg' },
-        { name: 'Postman', icon: '/svgs/postman.svg' },
+        { name: 'React Native', icon: '/svgs/react.svg' }
+      ],
+    },
+    {
+      category: 'Version Control',
+      skills: [
         { name: 'Git', icon: '/svgs/git.svg' },
         { name: 'GitHub', icon: '/svgs/github.svg' },
+      ],
+    },
+    {
+      category: 'Tools & Methodologies',
+      skills: [
+        { name: 'VS Code', icon: '/svgs/vscode.svg' },
+        { name: 'Visual Studio', icon: '/svgs/visual-studio.svg' },
+        { name: 'IntelliJ IDEA', icon: '/svgs/intellij.svg' },
+        { name: 'Postman', icon: '/svgs/postman.svg' },
         { name: 'Figma', icon: '/svgs/figma.svg' },
+        { name: 'Agile/Scrum', icon: '/svgs/agile.svg' },
+        { name: 'JWT', icon: '/svgs/jwt.svg' },
+        { name: 'REST APIs', icon: '/svgs/api.svg' },
+        { name: 'gRPC', icon: '/svgs/grpc.svg' },
       ],
       isFullWidth: true,
     },
+  ]
+
+  // Soft skills from CV
+  const softSkills = [
+    'Logical & Critical Thinking',
+    'Problem Solving',
+    'Agile/Scrum Methodologies',
+    'Project Management',
+    'Time Management',
+    'Technical Documentation',
+    'Remote Collaboration',
+    'Conflict Resolution',
+    'Oral & Written Communication',
   ]
 
   return (
@@ -293,7 +364,7 @@ const Skills = () => {
                   <SkillIcon
                     src={skill.icon}
                     alt={skill.name}
-                    theme={theme}
+                    theme={{ ...theme, isDarkMode }}
                     onError={(e) => (e.target.src = '/svgs/default.svg')}
                   />
                   <SkillName theme={theme}>{skill.name}</SkillName>
@@ -302,6 +373,36 @@ const Skills = () => {
             </SkillsContainer>
           </SkillCategory>
         ))}
+
+        {/* Soft Skills Category - Full Width */}
+        <SkillCategory
+          theme={theme}
+          isFullWidth={true}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <CategoryTitle theme={theme} isDarkMode={isDarkMode}>
+            Soft Skills
+          </CategoryTitle>
+
+          <SoftSkillsContainer>
+            {softSkills.map((skill, index) => (
+              <SoftSkillTag
+                key={skill}
+                theme={theme}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.08 }}
+              >
+                {skill}
+              </SoftSkillTag>
+            ))}
+          </SoftSkillsContainer>
+        </SkillCategory>
       </SkillsGrid>
     </SkillsSection>
   )

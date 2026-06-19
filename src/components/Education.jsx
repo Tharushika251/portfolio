@@ -9,7 +9,7 @@ const EducationSection = styled.section`
   background: ${({ theme }) => theme.sectionEducation};
   backdrop-filter: blur(8px);
   border: 1px solid ${({ theme, isDarkMode }) =>
-        isDarkMode ? 'rgba(99, 102, 241, 0.1)' : 'rgba(91, 33, 182, 0.1)'};
+    isDarkMode ? 'rgba(99, 102, 241, 0.1)' : 'rgba(91, 33, 182, 0.1)'};
   border-radius: 20px;
   margin: 2rem auto;
   max-width: 1400px;
@@ -42,7 +42,7 @@ const SectionTitle = styled(motion.h2)`
   font-weight: 800;
   letter-spacing: -0.02em;
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -161,11 +161,10 @@ const EducationLeft = styled.div`
   }
 `
 
-// Updated to use circular shape
 const InstituteLogo = styled(motion.div)`
   width: 80px;
   height: 80px;
-  border-radius: 50%; /* Changed from 15px to 50% for perfect circle */
+  border-radius: 50%;
   background: ${({ theme }) => theme.background};
   display: flex;
   align-items: center;
@@ -180,20 +179,18 @@ const InstituteLogo = styled(motion.div)`
   }
 `
 
-// Updated for circular images
 const LogoImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%; /* Changed from 12px to 50% for perfect circle */
+  border-radius: 50%;
 `
 
-// Updated for circular placeholder
 const PlaceholderLogo = styled.div`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.gradient};
-  border-radius: 50%; /* Changed from 12px to 50% for perfect circle */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -282,348 +279,348 @@ const EducationDescription = styled.p`
 `
 
 const Education = () => {
-    const { theme } = useTheme()
+  const { theme, isDarkMode } = useTheme()
 
-    const educationData = {
-        university: [
-            {
-                id: 1,
-                title: "BSC (Hons) in Information Technology",
-                institution: "Sri Lanka Institute of Information Technology (SLIIT)",
-                details: "GPA - 3.0",
-                duration: "July 2022 - Current",
-                status: "Ongoing",
-                description: "Specializing in software engineering, web development, and database management systems.",
-                logo: "/institutes/sliit-logo.png"
-            }
-        ],
-        certificates: [
-            {
-                id: 1,
-                title: "Short Course in Human Resource Management",
-                institution: "Open University of Sri Lanka",
-                details: "Professional Development",
-                duration: "May 2022 - Aug 2022",
-                description: "Comprehensive understanding of HR principles, recruitment, and organizational management.",
-                logo: "/institutes/ousl-logo.png"
-            },
-            {
-                id: 2,
-                title: "Advanced Certificate in English",
-                institution: "Rajarata University of Sri Lanka",
-                details: "Language Proficiency",
-                duration: "Apr 2022 - Apr 2023",
-                description: "Advanced English language skills focusing on professional communication and writing.",
-                logo: "/institutes/rajarata-logo.png"
-            }
-        ],
-        school: [
-            {
-                id: 1,
-                title: "Science Stream",
-                institution: "Royal College, Polonnaruwa",
-                details: "GCE Advanced Level",
-                duration: "Jan 2018 - Jan 2020",
-                description: "Focused on Physical Science stream with mathematics, physics, and chemistry as main subjects.",
-                logo: "/institutes/royal-college-logo.jpeg"
-            }
-        ],
-        courses: [
-            {
-                id: 1,
-                title: "A Beginner's Guide to Enterprise Resource Planning (ERP) Systems",
-                institution: "Alison",
-                details: "Online Course",
-                duration: "July 2025",
-                description: "Understanding ERP systems, their implementation, and business process integration.",
-                logo: "/institutes/alison-logo.png"
-            }
-        ]
+  const educationData = {
+    university: [
+      {
+        id: 1,
+        title: "BSc (Hons) in Information Technology",
+        institution: "Sri Lanka Institute of Information Technology (SLIIT)",
+        details: "Specializing in Software Engineering | GPA - 3.0",
+        duration: "July 2022 - May 2026",
+        status: "Coursework Completed",
+        description: "Completed coursework in software engineering, full-stack development, database management, and cloud computing. Final exam results pending, convocation in September/October 2026.",
+        logo: "/institutes/sliit-logo.png"
+      }
+    ],
+    certificates: [
+      {
+        id: 1,
+        title: "Short Course in Human Resource Management",
+        institution: "Open University of Sri Lanka",
+        details: "Professional Development",
+        duration: "May 2022 - Aug 2022",
+        description: "Comprehensive understanding of HR principles, recruitment, and organizational management.",
+        logo: "/institutes/ousl-logo.png"
+      },
+      {
+        id: 2,
+        title: "Advanced Certificate in English",
+        institution: "Rajarata University of Sri Lanka",
+        details: "Language Proficiency",
+        duration: "Apr 2022 - Apr 2023",
+        description: "Advanced English language skills focusing on professional communication and writing.",
+        logo: "/institutes/rajarata-logo.png"
+      }
+    ],
+    school: [
+      {
+        id: 1,
+        title: "GCE Advanced Level - Science Stream",
+        institution: "Royal College, Polonnaruwa",
+        details: "Physical Science Stream",
+        duration: "Jan 2018 - Jan 2020",
+        description: "Focused on Physical Science stream with Mathematics, Physics, and Chemistry as main subjects.",
+        logo: "/institutes/royal-college-logo.jpeg"
+      }
+    ],
+    courses: [
+      {
+        id: 1,
+        title: "A Beginner's Guide to Enterprise Resource Planning (ERP) Systems",
+        institution: "Alison",
+        details: "Online Certification",
+        duration: "Completed",
+        description: "Understanding ERP systems, their implementation, and business process integration.",
+        logo: "/institutes/alison-logo.png"
+      }
+    ]
+  }
+
+  const getInitials = (institutionName) => {
+    return institutionName
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase()
+      .substring(0, 3)
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
     }
+  }
 
-    const getInitials = (institutionName) => {
-        return institutionName
-            .split(' ')
-            .map(word => word[0])
-            .join('')
-            .toUpperCase()
-            .substring(0, 3)
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
     }
+  }
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
+  const logoVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }
     }
+  }
 
-    const itemVariants = {
-        hidden: { y: 30, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
-    }
+  return (
+    <EducationSection id="education" theme={theme} isDarkMode={isDarkMode}>
+      <SectionTitle
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        theme={theme}
+      >
+        Education
+      </SectionTitle>
 
-    const logoVariants = {
-        hidden: { scale: 0, rotate: -180 },
-        visible: {
-            scale: 1,
-            rotate: 0,
-            transition: {
-                type: "spring",
-                stiffness: 260,
-                damping: 20
-            }
-        }
-    }
-
-    return (
-        <EducationSection id="education" theme={theme}>
-            <SectionTitle
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                theme={theme}
-            >
-                Education
-            </SectionTitle>
-
-            <EducationContainer>
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
+      <EducationContainer>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <EducationCategory>
+            <CategoryTitle theme={theme}>University Education</CategoryTitle>
+            <EducationGrid>
+              {educationData.university.map((edu) => (
+                <EducationCard
+                  key={edu.id}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  theme={theme}
                 >
-                    {/* University Education */}
-                    <EducationCategory>
-                        <CategoryTitle theme={theme}>University Education</CategoryTitle>
-                        <EducationGrid>
-                            {educationData.university.map((edu) => (
-                                <EducationCard
-                                    key={edu.id}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.02 }}
-                                    theme={theme}
-                                >
-                                    <EducationHeader>
-                                        <EducationLeft>
-                                            <InstituteLogo
-                                                variants={logoVariants}
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                            >
-                                                {edu.logo ? (
-                                                    <LogoImage
-                                                        src={edu.logo}
-                                                        alt={`${edu.institution} logo`}
-                                                        onError={(e) => {
-                                                            e.target.style.display = 'none'
-                                                            e.target.nextSibling.style.display = 'flex'
-                                                        }}
-                                                    />
-                                                ) : (
-                                                    <PlaceholderLogo theme={theme}>
-                                                        {getInitials(edu.institution)}
-                                                    </PlaceholderLogo>
-                                                )}
-                                            </InstituteLogo>
-                                            <EducationInfo>
-                                                <EducationTitle theme={theme}>
-                                                    {edu.title}
-                                                </EducationTitle>
-                                                <InstitutionName theme={theme}>
-                                                    {edu.institution}
-                                                </InstitutionName>
-                                                <InstitutionDetails theme={theme}>
-                                                    {edu.details}
-                                                </InstitutionDetails>
-                                            </EducationInfo>
-                                        </EducationLeft>
-                                        <EducationRight>
-                                            <EducationDuration theme={theme}>
-                                                {edu.duration}
-                                            </EducationDuration>
-                                            {edu.status && <StatusBadge theme={theme}>{edu.status}</StatusBadge>}
-                                        </EducationRight>
-                                    </EducationHeader>
-                                    <EducationDescription theme={theme}>
-                                        {edu.description}
-                                    </EducationDescription>
-                                </EducationCard>
-                            ))}
-                        </EducationGrid>
-                    </EducationCategory>
+                  <EducationHeader>
+                    <EducationLeft>
+                      <InstituteLogo
+                        variants={logoVariants}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        theme={theme}
+                      >
+                        {edu.logo ? (
+                          <LogoImage
+                            src={edu.logo}
+                            alt={`${edu.institution} logo`}
+                            onError={(e) => {
+                              e.target.style.display = 'none'
+                              e.target.nextSibling.style.display = 'flex'
+                            }}
+                          />
+                        ) : (
+                          <PlaceholderLogo theme={theme}>
+                            {getInitials(edu.institution)}
+                          </PlaceholderLogo>
+                        )}
+                      </InstituteLogo>
+                      <EducationInfo>
+                        <EducationTitle theme={theme}>
+                          {edu.title}
+                        </EducationTitle>
+                        <InstitutionName theme={theme}>
+                          {edu.institution}
+                        </InstitutionName>
+                        <InstitutionDetails theme={theme}>
+                          {edu.details}
+                        </InstitutionDetails>
+                      </EducationInfo>
+                    </EducationLeft>
+                    <EducationRight>
+                      <EducationDuration theme={theme}>
+                        {edu.duration}
+                      </EducationDuration>
+                      {edu.status && <StatusBadge theme={theme}>{edu.status}</StatusBadge>}
+                    </EducationRight>
+                  </EducationHeader>
+                  <EducationDescription theme={theme}>
+                    {edu.description}
+                  </EducationDescription>
+                </EducationCard>
+              ))}
+            </EducationGrid>
+          </EducationCategory>
 
-                    {/* Professional Certificates */}
-                    <EducationCategory>
-                        <CategoryTitle theme={theme}>Professional Certificates</CategoryTitle>
-                        <EducationGrid>
-                            {educationData.certificates.map((cert) => (
-                                <EducationCard
-                                    key={cert.id}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.02 }}
-                                    theme={theme}
-                                >
-                                    <EducationHeader>
-                                        <EducationLeft>
-                                            <InstituteLogo
-                                                variants={logoVariants}
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                            >
-                                                {cert.logo ? (
-                                                    <LogoImage
-                                                        src={cert.logo}
-                                                        alt={`${cert.institution} logo`}
-                                                    />
-                                                ) : (
-                                                    <PlaceholderLogo theme={theme}>
-                                                        {getInitials(cert.institution)}
-                                                    </PlaceholderLogo>
-                                                )}
-                                            </InstituteLogo>
-                                            <EducationInfo>
-                                                <EducationTitle theme={theme}>
-                                                    {cert.title}
-                                                </EducationTitle>
-                                                <InstitutionName theme={theme}>
-                                                    {cert.institution}
-                                                </InstitutionName>
-                                                <InstitutionDetails theme={theme}>
-                                                    {cert.details}
-                                                </InstitutionDetails>
-                                            </EducationInfo>
-                                        </EducationLeft>
-                                        <EducationRight>
-                                            <EducationDuration theme={theme}>
-                                                {cert.duration}
-                                            </EducationDuration>
-                                        </EducationRight>
-                                    </EducationHeader>
-                                    <EducationDescription theme={theme}>
-                                        {cert.description}
-                                    </EducationDescription>
-                                </EducationCard>
-                            ))}
-                        </EducationGrid>
-                    </EducationCategory>
+          <EducationCategory>
+            <CategoryTitle theme={theme}>Professional Certificates</CategoryTitle>
+            <EducationGrid>
+              {educationData.certificates.map((cert) => (
+                <EducationCard
+                  key={cert.id}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  theme={theme}
+                >
+                  <EducationHeader>
+                    <EducationLeft>
+                      <InstituteLogo
+                        variants={logoVariants}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        theme={theme}
+                      >
+                        {cert.logo ? (
+                          <LogoImage
+                            src={cert.logo}
+                            alt={`${cert.institution} logo`}
+                          />
+                        ) : (
+                          <PlaceholderLogo theme={theme}>
+                            {getInitials(cert.institution)}
+                          </PlaceholderLogo>
+                        )}
+                      </InstituteLogo>
+                      <EducationInfo>
+                        <EducationTitle theme={theme}>
+                          {cert.title}
+                        </EducationTitle>
+                        <InstitutionName theme={theme}>
+                          {cert.institution}
+                        </InstitutionName>
+                        <InstitutionDetails theme={theme}>
+                          {cert.details}
+                        </InstitutionDetails>
+                      </EducationInfo>
+                    </EducationLeft>
+                    <EducationRight>
+                      <EducationDuration theme={theme}>
+                        {cert.duration}
+                      </EducationDuration>
+                    </EducationRight>
+                  </EducationHeader>
+                  <EducationDescription theme={theme}>
+                    {cert.description}
+                  </EducationDescription>
+                </EducationCard>
+              ))}
+            </EducationGrid>
+          </EducationCategory>
 
-                    {/* School Education */}
-                    <EducationCategory>
-                        <CategoryTitle theme={theme}>School Education</CategoryTitle>
-                        <EducationGrid>
-                            {educationData.school.map((school) => (
-                                <EducationCard
-                                    key={school.id}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.02 }}
-                                    theme={theme}
-                                >
-                                    <EducationHeader>
-                                        <EducationLeft>
-                                            <InstituteLogo
-                                                variants={logoVariants}
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                            >
-                                                {school.logo ? (
-                                                    <LogoImage
-                                                        src={school.logo}
-                                                        alt={`${school.institution} logo`}
-                                                    />
-                                                ) : (
-                                                    <PlaceholderLogo theme={theme}>
-                                                        {getInitials(school.institution)}
-                                                    </PlaceholderLogo>
-                                                )}
-                                            </InstituteLogo>
-                                            <EducationInfo>
-                                                <EducationTitle theme={theme}>
-                                                    {school.title}
-                                                </EducationTitle>
-                                                <InstitutionName theme={theme}>
-                                                    {school.institution}
-                                                </InstitutionName>
-                                                <InstitutionDetails theme={theme}>
-                                                    {school.details}
-                                                </InstitutionDetails>
-                                            </EducationInfo>
-                                        </EducationLeft>
-                                        <EducationRight>
-                                            <EducationDuration theme={theme}>
-                                                {school.duration}
-                                            </EducationDuration>
-                                        </EducationRight>
-                                    </EducationHeader>
-                                    <EducationDescription theme={theme}>
-                                        {school.description}
-                                    </EducationDescription>
-                                </EducationCard>
-                            ))}
-                        </EducationGrid>
-                    </EducationCategory>
+          <EducationCategory>
+            <CategoryTitle theme={theme}>School Education</CategoryTitle>
+            <EducationGrid>
+              {educationData.school.map((school) => (
+                <EducationCard
+                  key={school.id}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  theme={theme}
+                >
+                  <EducationHeader>
+                    <EducationLeft>
+                      <InstituteLogo
+                        variants={logoVariants}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        theme={theme}
+                      >
+                        {school.logo ? (
+                          <LogoImage
+                            src={school.logo}
+                            alt={`${school.institution} logo`}
+                          />
+                        ) : (
+                          <PlaceholderLogo theme={theme}>
+                            {getInitials(school.institution)}
+                          </PlaceholderLogo>
+                        )}
+                      </InstituteLogo>
+                      <EducationInfo>
+                        <EducationTitle theme={theme}>
+                          {school.title}
+                        </EducationTitle>
+                        <InstitutionName theme={theme}>
+                          {school.institution}
+                        </InstitutionName>
+                        <InstitutionDetails theme={theme}>
+                          {school.details}
+                        </InstitutionDetails>
+                      </EducationInfo>
+                    </EducationLeft>
+                    <EducationRight>
+                      <EducationDuration theme={theme}>
+                        {school.duration}
+                      </EducationDuration>
+                    </EducationRight>
+                  </EducationHeader>
+                  <EducationDescription theme={theme}>
+                    {school.description}
+                  </EducationDescription>
+                </EducationCard>
+              ))}
+            </EducationGrid>
+          </EducationCategory>
 
-                    {/* Online Courses */}
-                    <EducationCategory>
-                        <CategoryTitle theme={theme}>Online Courses</CategoryTitle>
-                        <EducationGrid>
-                            {educationData.courses.map((course) => (
-                                <EducationCard
-                                    key={course.id}
-                                    variants={itemVariants}
-                                    whileHover={{ scale: 1.02 }}
-                                    theme={theme}
-                                >
-                                    <EducationHeader>
-                                        <EducationLeft>
-                                            <InstituteLogo
-                                                variants={logoVariants}
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                            >
-                                                {course.logo ? (
-                                                    <LogoImage
-                                                        src={course.logo}
-                                                        alt={`${course.institution} logo`}
-                                                    />
-                                                ) : (
-                                                    <PlaceholderLogo theme={theme}>
-                                                        {getInitials(course.institution)}
-                                                    </PlaceholderLogo>
-                                                )}
-                                            </InstituteLogo>
-                                            <EducationInfo>
-                                                <EducationTitle theme={theme}>
-                                                    {course.title}
-                                                </EducationTitle>
-                                                <InstitutionName theme={theme}>
-                                                    {course.institution}
-                                                </InstitutionName>
-                                                <InstitutionDetails theme={theme}>
-                                                    {course.details}
-                                                </InstitutionDetails>
-                                            </EducationInfo>
-                                        </EducationLeft>
-                                        <EducationRight>
-                                            <EducationDuration theme={theme}>
-                                                {course.duration}
-                                            </EducationDuration>
-                                        </EducationRight>
-                                    </EducationHeader>
-                                    <EducationDescription theme={theme}>
-                                        {course.description}
-                                    </EducationDescription>
-                                </EducationCard>
-                            ))}
-                        </EducationGrid>
-                    </EducationCategory>
-                </motion.div>
-            </EducationContainer>
-        </EducationSection>
-    )
+          <EducationCategory>
+            <CategoryTitle theme={theme}>Online Courses</CategoryTitle>
+            <EducationGrid>
+              {educationData.courses.map((course) => (
+                <EducationCard
+                  key={course.id}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  theme={theme}
+                >
+                  <EducationHeader>
+                    <EducationLeft>
+                      <InstituteLogo
+                        variants={logoVariants}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        theme={theme}
+                      >
+                        {course.logo ? (
+                          <LogoImage
+                            src={course.logo}
+                            alt={`${course.institution} logo`}
+                          />
+                        ) : (
+                          <PlaceholderLogo theme={theme}>
+                            {getInitials(course.institution)}
+                          </PlaceholderLogo>
+                        )}
+                      </InstituteLogo>
+                      <EducationInfo>
+                        <EducationTitle theme={theme}>
+                          {course.title}
+                        </EducationTitle>
+                        <InstitutionName theme={theme}>
+                          {course.institution}
+                        </InstitutionName>
+                        <InstitutionDetails theme={theme}>
+                          {course.details}
+                        </InstitutionDetails>
+                      </EducationInfo>
+                    </EducationLeft>
+                    <EducationRight>
+                      <EducationDuration theme={theme}>
+                        {course.duration}
+                      </EducationDuration>
+                    </EducationRight>
+                  </EducationHeader>
+                  <EducationDescription theme={theme}>
+                    {course.description}
+                  </EducationDescription>
+                </EducationCard>
+              ))}
+            </EducationGrid>
+          </EducationCategory>
+        </motion.div>
+      </EducationContainer>
+    </EducationSection>
+  )
 }
 
 export default Education

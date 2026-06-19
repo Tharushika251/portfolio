@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import { useTheme } from '../context/ThemeContext'
+import emailjs from '@emailjs/browser'
 
-// Add this styled component for the icons
 const Icon = styled.img`
   width: 24px;
   height: 24px;
@@ -222,7 +222,7 @@ const ErrorMessage = styled(motion.div)`
 `
 
 const Contact = () => {
-  const { theme } = useTheme()
+  const { theme, isDarkMode } = useTheme()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -230,40 +230,49 @@ const Contact = () => {
     message: ''
   })
   const [isLoading, setIsLoading] = useState(false)
-  const [messageStatus, setMessageStatus] = useState(null) // 'success' or 'error'
+  const [messageStatus, setMessageStatus] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
-    // Clear message status when user starts typing again
     if (messageStatus) setMessageStatus(null)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     setIsLoading(true)
     setMessageStatus(null)
 
-    // Netlify Forms will automatically handle the submission
-    // We just need to show loading state and then success/error
     try {
-      // The form will be submitted to Netlify automatically
-      // We'll use a small delay to simulate processing
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await emailjs.send(
+        'service_4ec452b',
+        'template_lj1lpue',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'rx3NSM7lGgrlcPnOT'
+      )
 
-      // Success - Netlify will handle the actual email sending
       setMessageStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
 
-      // Clear success message after 5 seconds
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      })
+
       setTimeout(() => {
         setMessageStatus(null)
       }, 5000)
-
     } catch (error) {
-      console.error('Error sending email:', error)
+      console.error(error)
+
       setMessageStatus('error')
 
-      // Clear error message after 5 seconds
       setTimeout(() => {
         setMessageStatus(null)
       }, 5000)
@@ -294,30 +303,29 @@ const Contact = () => {
         >
           <h3>Let's Work Together</h3>
           <p>
-            I'm always interested in new opportunities and collaborations.
-            Whether you have a project in mind or just want to say hello,
-            feel free to reach out!
+            I'm currently seeking opportunities as an Associate Software Engineer or 
+            Frontend Developer. Whether you have a project in mind, a potential 
+            role to discuss, or just want to connect, feel free to reach out!
           </p>
 
           <ContactMethods>
-            <ContactMethod href="mailto:tharushikarukshani76@gmail.com" whileHover={{ scale: 1.05 }} theme={theme}>
-              📧 tharushikarukshani76@gmail.com
+            <ContactMethod href="mailto:tharushirukshani251@gmail.com" whileHover={{ scale: 1.05 }} theme={theme}>
+              📧 tharushirukshani251@gmail.com
             </ContactMethod>
             <ContactMethod href="tel:+94743895060" whileHover={{ scale: 1.05 }} theme={theme}>
               📞 +94 74 389 5060
             </ContactMethod>
             <ContactMethod href="https://linkedin.com/in/tharushikarukshani" whileHover={{ scale: 1.05 }} theme={theme}>
-              <Icon src="/svgs/linkedin.svg" alt="LinkedIn" theme={theme} />
+              <Icon src="/svgs/linkedin.svg" alt="LinkedIn" theme={{ ...theme, isDarkMode }} />
               LinkedIn Profile
             </ContactMethod>
             <ContactMethod href="https://github.com/tharushika251" whileHover={{ scale: 1.05 }} theme={theme}>
-              <Icon src="/svgs/github.svg" alt="GitHub" theme={theme} />
+              <Icon src="/svgs/github.svg" alt="GitHub" theme={{ ...theme, isDarkMode }} />
               GitHub Profile
             </ContactMethod>
           </ContactMethods>
         </ContactInfo>
 
-        {/* Netlify Form - Add data-netlify="true" and hidden input field */}
         <ContactForm
           name="contact"
           method="POST"
@@ -330,7 +338,6 @@ const Contact = () => {
           onSubmit={handleSubmit}
           theme={theme}
         >
-          {/* Hidden input for Netlify Forms */}
           <input type="hidden" name="form-name" value="contact" />
           <div hidden>
             <input name="bot-field" />
@@ -401,12 +408,11 @@ const Contact = () => {
             ) : (
               <>
                 Send Message
-                <Icon src="/svgs/send.svg" alt="Send" theme={theme} />
+                <Icon src="/svgs/send.svg" alt="Send" theme={{ ...theme, isDarkMode }} />
               </>
             )}
           </SubmitButton>
 
-          {/* Success/Error Messages */}
           <AnimatePresence>
             {messageStatus === 'success' && (
               <SuccessMessage

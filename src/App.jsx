@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from 'react'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import { GlobalStyles } from './styles/GlobalStyles'
@@ -61,11 +60,9 @@ const SectionOffset = styled.div`
   margin: 2rem 0;
 `
 
-// Create a component that consumes the theme
 const ThemedAppContent = () => {
   const { theme } = useTheme()
 
-  // SVGs for developer tech stack
   const svgs = [
     '/svgs/react.svg',
     '/svgs/nodejs.svg',
@@ -83,7 +80,6 @@ const ThemedAppContent = () => {
     '/svgs/javascript.svg',
   ]
 
-  // Random floating SVG positions for entire app
   const floatingSvgs = Array.from({ length: 25 }, (_, i) => ({
     id: i,
     src: svgs[Math.floor(Math.random() * svgs.length)],
@@ -97,7 +93,6 @@ const ThemedAppContent = () => {
     <>
       <GlobalStyles theme={theme} />
 
-      {/* Background for entire app */}
       <AppBackground>
         {floatingSvgs.map((svg) => (
           <FloatingSVG

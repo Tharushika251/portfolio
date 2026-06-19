@@ -24,7 +24,6 @@ const HeroContent = styled.div`
   z-index: 2;
 `
 
-// 🌈 Animated gradient flow
 const gradientFlow = keyframes`
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -83,10 +82,12 @@ const Description = styled(motion.p)`
   font-size: 1.1rem;
   margin-bottom: 3rem;
   color: ${({ theme, isDarkMode }) =>
-    isDarkMode ? '#E2E8F0' : '#1E293B'};  line-height: 1.8;
-  opacity: 0.95; 
-  font-weight: 500; 
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); 
+    isDarkMode ? '#E2E8F0' : '#1E293B'};
+  line-height: 1.8;
+  opacity: 0.95;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
   @media (max-width: 768px) {
     font-size: 1rem;
     padding: 0 1rem;
@@ -113,7 +114,7 @@ const CTAButton = styled(motion.button)`
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px ${({ theme, isDarkMode }) =>
-    isDarkMode ? theme.primary + '70' : 'rgba(124, 58, 237, 0.4)'};
+      isDarkMode ? theme.primary + '70' : 'rgba(124, 58, 237, 0.4)'};
   }
 
   @media (max-width: 480px) {
@@ -139,6 +140,53 @@ const Hero = () => {
     visible: { y: 0, opacity: 1 }
   }
 
+  const Greeting = styled(motion.h2)`
+    font-size: 4rem;
+    font-weight: 700;
+    color: ${({ theme }) => theme.text};
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 768px) {
+      font-size: 2.8rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
+  `
+
+  const Name = styled(motion.h1)`
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+
+    background: ${({ theme }) => theme.gradient};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    @media (max-width: 768px) {
+      font-size: 3.5rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 2.8rem;
+    }
+  `
+
+  const HeroContent = styled.div`
+    text-align: center;
+    max-width: 900px;
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  `
+
   return (
     <HeroSection id="home" theme={theme} isDarkMode={isDarkMode}>
       <motion.div
@@ -148,23 +196,26 @@ const Hero = () => {
       >
         <HeroContent>
           <Title variants={itemVariants} theme={theme}>
-            {showGradient ? (
-              <AnimatedText theme={theme} isDarkMode={isDarkMode}>
-                Hi, I'm Tharushika Rukshani
-              </AnimatedText>
-            ) : (
+            <Greeting
+              variants={itemVariants}
+              theme={theme}
+            >
+              Hello! I'm
+            </Greeting>
+
+            <Name
+              variants={itemVariants}
+              theme={theme}
+            >
               <TypeAnimation
                 sequence={[
-                  "Hi, I'm Tharushika Rukshani",
-                  () => setShowGradient(true),
+                  "Tharushika Rukshani",
+                  1000
                 ]}
                 speed={50}
                 repeat={0}
-                style={{
-                  color: isDarkMode ? theme.primary : '#5B21B6',
-                }}
               />
-            )}
+            </Name>
           </Title>
 
           <Subtitle
@@ -172,15 +223,14 @@ const Hero = () => {
             theme={theme}
             isDarkMode={isDarkMode}
           >
-            Software Engineer • Full-Stack Developer • Problem Solver
+            Software Engineer
           </Subtitle>
 
           <Description variants={itemVariants} theme={theme} isDarkMode={isDarkMode}>
-            I'm a passionate Software Engineering undergraduate at SLIIT who loves building impactful,
-            high-performing, and user-focused digital solutions.
-            <br />
-            With a strong foundation in modern web and cloud technologies,
-            I strive to turn innovative ideas into elegant, scalable applications that make a difference.
+            I'm a result-oriented Software Engineering graduate from SLIIT with a BSc (Hons) in 
+            Information Technology, specializing in Software Engineering. With hands-on experience 
+            in full-stack development and agile methodologies, I strive to turn innovative ideas 
+            into elegant, scalable applications that make a difference.
           </Description>
 
           <CTAButton

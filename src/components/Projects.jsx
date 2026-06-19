@@ -42,7 +42,7 @@ const SectionTitle = styled(motion.h2)`
   font-weight: 800;
   letter-spacing: -0.02em;
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -108,12 +108,14 @@ const ProjectCard = styled(motion.div)`
     left: 0;
     right: 0;
     height: 4px;
-    background: ${({ theme, status }) =>
-    status === 'current'
-      ? '#22C55E'
-      : status === 'recent'
-        ? '#3B82F6'
-        : '#8B5CF6'};
+    background: ${({ status }) =>
+      status === 'research'
+        ? '#EF4444'
+        : status === 'current'
+          ? '#22C55E'
+          : status === 'recent'
+            ? '#3B82F6'
+            : '#8B5CF6'};
     z-index: 2;
   }
 `
@@ -138,12 +140,14 @@ const ProjectTitle = styled.h3`
 `
 
 const ProjectDate = styled(motion.span)`
-  background: ${({ theme, status }) =>
-    status === 'current'
-      ? 'linear-gradient(135deg, #22C55E, #16A34A)'
-      : status === 'recent'
-        ? 'linear-gradient(135deg, #3B82F6, #2563EB)'
-        : 'linear-gradient(135deg, #8B5CF6, #7C3AED)'};
+  background: ${({ status }) =>
+    status === 'research'
+      ? 'linear-gradient(135deg, #EF4444, #DC2626)'
+      : status === 'current'
+        ? 'linear-gradient(135deg, #22C55E, #16A34A)'
+        : status === 'recent'
+          ? 'linear-gradient(135deg, #3B82F6, #2563EB)'
+          : 'linear-gradient(135deg, #8B5CF6, #7C3AED)'};
   color: white;
   padding: 0.4rem 1rem;
   border-radius: 15px;
@@ -177,7 +181,7 @@ const ProjectImage = styled(motion.div)`
     right: 0;
     bottom: 0;
     background: linear-gradient(
-      45deg, 
+      45deg,
       rgba(0,0,0,0.7) 0%,
       rgba(0,0,0,0.3) 50%,
       rgba(0,0,0,0.7) 100%
@@ -196,7 +200,7 @@ const ProjectImage = styled(motion.div)`
 
   ${ProjectCard}:hover &::before {
     background: linear-gradient(
-      45deg, 
+      45deg,
       rgba(0,0,0,0.5) 0%,
       rgba(0,0,0,0.2) 50%,
       rgba(0,0,0,0.5) 100%
@@ -297,11 +301,13 @@ const ProjectHighlight = styled(motion.div)`
   top: 10px;
   right: 10px;
   background: ${({ status }) =>
-    status === 'current'
-      ? 'linear-gradient(135deg, #22C55E, #16A34A)'
-      : status === 'recent'
-        ? 'linear-gradient(135deg, #3B82F6, #2563EB)'
-        : 'linear-gradient(135deg, #8B5CF6, #7C3AED)'};
+    status === 'research'
+      ? 'linear-gradient(135deg, #EF4444, #DC2626)'
+      : status === 'current'
+        ? 'linear-gradient(135deg, #22C55E, #16A34A)'
+        : status === 'recent'
+          ? 'linear-gradient(135deg, #3B82F6, #2563EB)'
+          : 'linear-gradient(135deg, #8B5CF6, #7C3AED)'};
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 10px;
@@ -316,30 +322,46 @@ const ProjectHighlight = styled(motion.div)`
 const Projects = () => {
   const { theme, isDarkMode } = useTheme()
 
-  // Projects in chronological order (newest first)
   const projects = [
     {
-      title: "EV Charging Station Booking System - EVConnect",
-      shortTitle: "EVConnect",
-      date: "Oct 2025 - Present",
-      status: "current",
-      description: "Full-stack client-server EV Charging Station Booking System with enterprise-grade specifications. Features user management, charging station operations, and booking lifecycle management.",
-      tech: ["C# (.NET)", "Web API", "MongoDB", "React.js", "Bootstrap", "IIS", "Android", "SQLite"],
-      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110%5Fmy%5Fsliit%5Flk%2FDocuments%2FRecording%2D20251014%5F113226%2Ewebm&nav=%7B%22defaultNavPanel%22%3A%7B%22pluginName%22%3A%22MediaSettingsLayer%22%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ec1c14768%2Dba42%2D4007%2D91e9%2D2ebcbbb624ca',
-      codeLink: "https://github.com/Tharushika251/EVConnect",
+      title: "FractalX - Automated Monolith-to-Microservices Migration Framework",
+      shortTitle: "FractalX",
+      date: "2025 - Present",
+      status: "research",
+      achievement:
+        "Transforms Spring Boot monoliths into production-ready microservices in under one minute.",
+      description:
+        "Designed and implemented the Decomposed Service Communication and Unified API Interface module for FractalX, a research framework that automates migration of Spring Boot monoliths into cloud-ready microservices. Built auto-generated gRPC communication, service discovery, API gateway integration, observability instrumentation, and resilience mechanisms. The framework uses AST-based static analysis to generate production-ready microservice ecosystems with distributed tracing, saga orchestration, health monitoring, and containerized deployment.",
+      tech: [
+        "Java",
+        "Spring Boot",
+        "React.js",
+        "gRPC",
+        "AST Analysis",
+        "OpenTelemetry",
+        "Jaeger",
+        "Resilience4j",
+        "Docker",
+        "Microservices",
+        "API Gateway",
+        "Service Discovery"
+      ],
+      demoLink: "https://fractalx.org",
+      docsLink: "https://fractalx.org/docs",
+      codeLink: "https://github.com/fractalx-org/FractalX",
       gradient: "linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)",
-      imageUrl: "/projects/evconnect.png"
+      imageUrl: "/projects/fractalx.png"
     },
     {
       title: "Social Media Application - Pingy",
       shortTitle: "Pingy",
       date: "Aug 2025",
       status: "recent",
-      description: "Modern social media platform with real-time chat, posts, stories, and user engagement features. Integrated authentication and media optimization.",
+      description: "Modern social media platform with real-time chat, posts, stories, and user engagement features. Integrated Clerk authentication and Supabase for real-time updates.",
       tech: ["React.js", "Clerk Auth", "Supabase", "Node.js", "Express.js", "MongoDB"],
-      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110_my_sliit_lk%2FDocuments%2FRecording-20251013_184432%2Ewebm&nav=%7B"defaultNavPanel"%3A%7B"pluginName"%3A"MediaSettingsLayer"%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Edcad44e4-fc08-41c5-ba66-784f87726ff2',
+      demoLink: '#',
       codeLink: "https://github.com/Tharushika251/Pingy",
-      gradient: "linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD)",
+      gradient: "linear-gradient(135deg, #EC4899, #F472B6, #F9A8D4)",
       imageUrl: "/projects/pingy.png"
     },
     {
@@ -347,9 +369,9 @@ const Projects = () => {
       shortTitle: "AcademIQ",
       date: "June 2025",
       status: "recent",
-      description: "Role-based quiz platform for teachers and students with real-time timers, performance analytics, and global leaderboards.",
+      description: "Role-based quiz platform for teachers and students with real-time timers, performance analytics, and global leaderboards. Features JWT-based authentication and RBAC.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
-      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110_my_sliit_lk%2FDocuments%2FRecording-20251013_193410%2Ewebm&nav=%7B"defaultNavPanel"%3A%7B"pluginName"%3A"MediaSettingsLayer"%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E61ee40de-0a35-4e5d-9c4b-c700da41b558',
+      demoLink: '#',
       codeLink: "https://github.com/Tharushika251/AcademIQ",
       gradient: "linear-gradient(135deg, #8B5CF6, #A78BFA, #C4B5FD)",
       imageUrl: "/projects/academiq.png"
@@ -359,11 +381,11 @@ const Projects = () => {
       shortTitle: "Foodie",
       date: "Apr 2025",
       status: "completed",
-      description: "Microservices-based food ordering and delivery system with containerization, Kubernetes orchestration, and role-based authentication.",
+      description: "Microservices-based food ordering and delivery system with Docker and Kubernetes containerization. Features role-based authentication for Customers, Restaurant Admins, and Delivery Personnel.",
       tech: ["React.js", "Node.js", "Docker", "Kubernetes", "MongoDB", "Supabase"],
-      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110%5Fmy%5Fsliit%5Flk%2FDocuments%2FRecording%2D20251006%5F032606%2Ewebm&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E04a823cc%2D9302%2D4af5%2D9cb5%2D7d3bd48269af',
+      demoLink: '#',
       codeLink: "https://github.com/Tharushika251/Foodie",
-      gradient: "linear-gradient(135deg, #EC4899, #F472B6, #F9A8D4)",
+      gradient: "linear-gradient(135deg, #10B981, #34D399, #6EE7B7)",
       imageUrl: "/projects/foodie.png"
     },
     {
@@ -371,12 +393,24 @@ const Projects = () => {
       shortTitle: "Rest Countries API",
       date: "Mar 2025",
       status: "completed",
-      description: "Responsive React application integrating REST Countries API with detailed country views, search functionality, and user session management.",
+      description: "Responsive React application integrating REST Countries API with detailed country views, search functionality, and local storage for session management.",
       tech: ["React.js", "REST API", "CSS3", "Local Storage"],
-      demoLink: 'https://mysliit-my.sharepoint.com/personal/it22077110_my_sliit_lk/_layouts/15/stream.aspx?id=%2Fpersonal%2Fit22077110_my_sliit_lk%2FDocuments%2FRecording-20251013_175416%2Ewebm&nav=%7B"defaultNavPanel"%3A%7B"pluginName"%3A"MediaSettingsLayer"%7D%7D&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E3394ea60-e6e0-4946-a05b-239c7c29120a',
+      demoLink: '#',
       codeLink: "https://github.com/Tharushika251/Rest_Countries_API",
-      gradient: "linear-gradient(135deg, #10B981, #34D399, #6EE7B7)",
+      gradient: "linear-gradient(135deg, #F59E0B, #FBBF24, #FCD34D)",
       imageUrl: "/projects/restCountriesAPI.png"
+    },
+    {
+      title: "EV Charging Station Booking System - EVConnect",
+      shortTitle: "EVConnect",
+      date: "Oct 2025 - Present",
+      status: "completed",
+      description:   "Enterprise-grade EV charging station booking platform supporting user management, charging station administration, reservation workflows, availability tracking, and booking lifecycle management. Built using a multi-tier architecture with .NET Web APIs, React, MongoDB, and Android integration.",
+      tech: ["C# (.NET)", "Web API", "MongoDB", "React.js", "Bootstrap", "IIS", "Android", "SQLite"],
+      demoLink: '#',
+      codeLink: "https://github.com/Tharushika251/EVConnect",
+      gradient: "linear-gradient(135deg, #3B82F6, #60A5FA, #93C5FD)",
+      imageUrl: "/projects/evconnect.png"
     }
   ]
 
@@ -385,6 +419,7 @@ const Projects = () => {
       case 'current': return '🚀 Current Project';
       case 'recent': return '⭐ Recent';
       case 'completed': return '✅ Completed';
+      case 'research': return '🔬 Research Project';
       default: return '📁 Project';
     }
   }
@@ -493,9 +528,18 @@ const Projects = () => {
                   </ProjectDate>
                 </ProjectHeader>
 
-                <ProjectDescription theme={theme}>
-                  {project.description}
-                </ProjectDescription>
+                {project.achievement && (
+                  <div
+                    style={{
+                      marginBottom: '1rem',
+                      fontWeight: 600,
+                      color: theme.primary,
+                      lineHeight: 1.5
+                    }}
+                  >
+                    ⚡ {project.achievement}
+                  </div>
+                )}
 
                 <TechStack>
                   {project.tech.map((tech, techIndex) => (
@@ -523,22 +567,41 @@ const Projects = () => {
                 </TechStack>
 
                 <ProjectLinks>
-                  <ProjectLink
-                    href={project.demoLink}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    theme={theme}
-                  >
-                    🌐 Live Demo
-                  </ProjectLink>
+                  {project.demoLink !== '#' && (
+                    <ProjectLink
+                      href={project.demoLink}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      theme={theme}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      🌐 Website
+                    </ProjectLink>
+                  )}
                   <SecondaryLink
                     href={project.codeLink}
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     theme={theme}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    💻 Source Code
+                    💻 GitHub
                   </SecondaryLink>
+                  {project.docsLink && (
+                    <SecondaryLink
+                      href={project.docsLink}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      theme={theme}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ flex: 0.7 }}
+                    >
+                      📖 Documentation
+                    </SecondaryLink>
+                  )}
                 </ProjectLinks>
               </ProjectContent>
             </ProjectCard>

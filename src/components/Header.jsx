@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import ThemeToggle from './ThemeToggle'
@@ -87,7 +87,7 @@ const MobileNav = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  z-index: 999;
+  z-index: 1002;
   box-shadow: -4px 0 15px ${({ theme }) => theme.cardShadow};
 `
 
@@ -99,6 +99,47 @@ const MobileNavLink = styled(NavLink)`
 const Header = () => {
     const { theme } = useTheme()
     const [menuOpen, setMenuOpen] = useState(false)
+    const mobileNavRef = useRef(null)
+
+    useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth > 768) {
+          setMenuOpen(false)
+        }
+      }
+
+      window.addEventListener('resize', handleResize)
+
+      return () => {
+        window.removeEventListener('resize', handleResize)
+      }
+    }, [])
+
+    useEffect(() => {
+      document.body.style.overflow = menuOpen ? 'hidden' : 'auto'
+
+      return () => {
+        document.body.style.overflow = 'auto'
+      }
+    }, [menuOpen])
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (
+          menuOpen &&
+          mobileNavRef.current &&
+          !mobileNavRef.current.contains(event.target)
+        ) {
+          setMenuOpen(false)
+        }
+      }
+
+      document.addEventListener('mousedown', handleClickOutside)
+
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [menuOpen])
 
     return (
         <HeaderContainer
@@ -128,23 +169,73 @@ const Header = () => {
             </HeaderContent>
 
             <AnimatePresence>
-                {menuOpen && (
-                    <MobileNav
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                        theme={theme}
+              {menuOpen && (
+                <>
+                  <MobileNav
+                    ref={mobileNavRef}
+                    initial={{ x: '100%' }}
+                    animate={{ x: 0 }}
+                    exit={{ x: '100%' }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 300,
+                      damping: 30
+                    }}
+                    theme={theme}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <MobileNavLink
+                      href="#home"
+                      onClick={() => setMenuOpen(false)}
+                      theme={theme}
                     >
-                        <MobileNavLink href="#home" onClick={() => setMenuOpen(false)} theme={theme}>Home</MobileNavLink>
-                        <MobileNavLink href="#about" onClick={() => setMenuOpen(false)} theme={theme}>About</MobileNavLink>
-                        <MobileNavLink href="#education" onClick={() => setMenuOpen(false)} theme={theme}>Education</MobileNavLink>
-                        <MobileNavLink href="#skills" onClick={() => setMenuOpen(false)} theme={theme}>Skills</MobileNavLink>
-                        <MobileNavLink href="#projects" onClick={() => setMenuOpen(false)} theme={theme}>Projects</MobileNavLink>
-                        <MobileNavLink href="#contact" onClick={() => setMenuOpen(false)} theme={theme}>Contact</MobileNavLink>
-                        <ThemeToggle />
-                    </MobileNav>
-                )}
+                      Home
+                    </MobileNavLink>
+
+                    <MobileNavLink
+                      href="#about"
+                      onClick={() => setMenuOpen(false)}
+                      theme={theme}
+                    >
+                      About
+                    </MobileNavLink>
+
+                    <MobileNavLink
+                      href="#education"
+                      onClick={() => setMenuOpen(false)}
+                      theme={theme}
+                    >
+                      Education
+                    </MobileNavLink>
+
+                    <MobileNavLink
+                      href="#skills"
+                      onClick={() => setMenuOpen(false)}
+                      theme={theme}
+                    >
+                      Skills
+                    </MobileNavLink>
+
+                    <MobileNavLink
+                      href="#projects"
+                      onClick={() => setMenuOpen(false)}
+                      theme={theme}
+                    >
+                      Projects
+                    </MobileNavLink>
+
+                    <MobileNavLink
+                      href="#contact"
+                      onClick={() => setMenuOpen(false)}
+                      theme={theme}
+                    >
+                      Contact
+                    </MobileNavLink>
+
+                    <ThemeToggle />
+                  </MobileNav>
+                </>
+              )}
             </AnimatePresence>
         </HeaderContainer>
     )

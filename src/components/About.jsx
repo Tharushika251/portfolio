@@ -37,7 +37,7 @@ const SectionTitle = styled(motion.h2)`
   font-weight: 800;
   letter-spacing: -0.02em;
   position: relative;
-  
+
   &::after {
     content: '';
     position: absolute;
@@ -76,10 +76,10 @@ const AboutContent = styled.div`
 `
 
 const AboutText = styled(motion.div)`
-  order: 1; /* Default order for large screens */
+  order: 1;
 
   @media (max-width: 768px) {
-    order: 2; /* Text comes after image on medium and small screens */
+    order: 2;
   }
 
   h3 {
@@ -97,43 +97,75 @@ const AboutText = styled(motion.div)`
     margin-bottom: 1.5rem;
     line-height: 1.8;
     color: ${({ theme, isDarkMode }) =>
-      isDarkMode ? theme.text : theme.text};  line-height: 1.8;
-    opacity: 0.95; 
-    font-weight: 500; 
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);     font-size: 1.1rem;
+      isDarkMode ? theme.text : theme.text};
+    opacity: 0.95;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
   }
 `
 
-const ProfileImage = styled(motion.img)`
+const ImageGallery = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  order: 2;
+
+  @media (max-width: 768px) {
+    order: 1;
+  }
+`
+
+const MainImage = styled(motion.img)`
   width: 100%;
-  max-width: 450px;
-  height: 550px;
+  max-width: 420px;
+  height: 520px;
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 15px 35px ${({ theme }) => theme.cardShadow};
-  transition: all 0.3s ease;
-  display: block;
-  margin: 0 auto;
-  cursor: pointer;
-  border: 3px solid transparent;
-  background: ${({ theme }) => theme.gradient};
-  background-clip: padding-box;
-  order: 2; /* Default order for large screens */
 
   @media (max-width: 768px) {
-    order: 1; /* Image comes before text on medium and small screens */
     height: 450px;
-    max-width: 380px;
+    max-width: 350px;
   }
 
   @media (max-width: 480px) {
     height: 380px;
-    max-width: 320px;
+    max-width: 300px;
   }
+`
+
+const ThumbnailContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+`
+
+const Thumbnail = styled(motion.img)`
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  border: ${({ active, theme }) =>
+    active
+      ? `3px solid ${theme.primary}`
+      : '2px solid transparent'};
+
+  opacity: ${({ active }) => (active ? 1 : 0.7)};
+
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: scale(1.03);
-    box-shadow: 0 20px 45px ${({ theme }) => theme.primary}40;
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+
+  @media (max-width: 480px) {
+    width: 65px;
+    height: 65px;
   }
 `
 
@@ -156,12 +188,12 @@ const InfoItem = styled(motion.div)`
   border-left: 5px solid ${({ theme }) => theme.primary};
   box-shadow: 0 8px 25px ${({ theme }) => theme.cardShadow};
   transition: all 0.3s ease;
-  
+
   strong {
     color: ${({ theme }) => theme.primary};
     font-weight: 600;
   }
-  
+
   color: ${({ theme }) => theme.text};
   font-size: 1rem;
 
@@ -176,10 +208,19 @@ const InfoItem = styled(motion.div)`
 `
 
 const About = () => {
-  const { theme } = useTheme()
+  const { theme, isDarkMode } = useTheme()
+  const [selectedImage, setSelectedImage] = React.useState(0)
+
+  const images = [
+    "/about/batchPhoto.jpg",
+    "/about/presentation.jpg",
+    "/about/casual.jpeg",
+    "/about/formal.jpg"
+    
+  ]
 
   return (
-    <AboutSection id="about" theme={theme}>
+    <AboutSection id="about" theme={theme} isDarkMode={isDarkMode}>
       <SectionTitle
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -197,17 +238,21 @@ const About = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           theme={theme}
+          isDarkMode={isDarkMode}
         >
-          <h3>Software Engineering Undergraduate</h3>
+          <h3>Software Engineering Graduate</h3>
           <p>
-            I'm a dedicated Software Engineering undergraduate at the Sri Lanka Institute of Information Technology (SLIIT),
-            currently in my final year. I'm passionate about crafting clean, efficient, and user-focused software solutions
-            that blend creativity with functionality.
+            I'm a result-oriented Software Engineering graduate from the Sri Lanka Institute of 
+            Information Technology (SLIIT) with a BSc (Hons) in Information Technology, 
+            specializing in Software Engineering. I'm passionate about crafting clean, 
+            efficient, and user-focused software solutions.
           </p>
           <p>
-            What started as curiosity for technology has grown into a deep enthusiasm for building impactful digital experiences —
-            from designing intuitive interfaces to engineering scalable backend systems. I'm always eager to learn, innovate,
-            and turn ideas into meaningful products.
+            With hands-on experience in full-stack development from my 6-month remote internship 
+            at QMatrixAI (UK-based), I've worked with modern web technologies and agile 
+            development practices. I'm currently seeking an Associate Software Engineer / 
+            Frontend Developer position to leverage my technical skills in building 
+            scalable, user-centric applications.
           </p>
 
           <InfoGrid>
@@ -223,7 +268,7 @@ const About = () => {
               transition={{ type: "spring", stiffness: 300 }}
               theme={theme}
             >
-              <strong>Faculty:</strong> Computing
+              <strong>Degree:</strong> BSc (Hons) IT
             </InfoItem>
             <InfoItem
               whileHover={{ scale: 1.02 }}
@@ -237,21 +282,36 @@ const About = () => {
               transition={{ type: "spring", stiffness: 300 }}
               theme={theme}
             >
-              <strong>Year:</strong> 4th Year, 1st Semester
+              <strong>Status:</strong> Coursework Completed
             </InfoItem>
           </InfoGrid>
         </AboutText>
 
-        <ProfileImage
-          src="/presentation2.jpg"
-          alt="Tharushika Rukshani - Software Engineering Student"
-          theme={theme}
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.03 }}
-        />
+        <ImageGallery>
+          <MainImage
+            key={selectedImage}
+            src={images[selectedImage]}
+            alt="Tharushika Rukshani"
+            theme={theme}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+          />
+
+          <ThumbnailContainer>
+            {images.map((image, index) => (
+              <Thumbnail
+                key={index}
+                src={image}
+                active={selectedImage === index}
+                theme={theme}
+                onClick={() => setSelectedImage(index)}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+              />
+            ))}
+          </ThumbnailContainer>
+        </ImageGallery>
       </AboutContent>
     </AboutSection>
   )
