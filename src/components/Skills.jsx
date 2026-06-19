@@ -279,15 +279,10 @@ const Skills = () => {
       ],
     },
     {
-      category: 'Mobile Appliction Development',
+      category: 'Mobile Appliction Development & Version Control',
       skills: [
         { name: 'Android Studio', icon: '/svgs/android-studio.svg' },
-        { name: 'React Native', icon: '/svgs/react.svg' }
-      ],
-    },
-    {
-      category: 'Version Control',
-      skills: [
+        { name: 'React Native', icon: '/svgs/react.svg' },
         { name: 'Git', icon: '/svgs/git.svg' },
         { name: 'GitHub', icon: '/svgs/github.svg' },
       ],
