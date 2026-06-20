@@ -315,7 +315,7 @@ const Contact = () => {
             <ContactMethod href="tel:+94743895060" whileHover={{ scale: 1.05 }} theme={theme}>
               📞 +94 74 389 5060
             </ContactMethod>
-            <ContactMethod href="https://linkedin.com/in/tharushikarukshani" whileHover={{ scale: 1.05 }} theme={theme}>
+            <ContactMethod href="http://www.linkedin.com/in/tharushika-rukshani-437b77343" whileHover={{ scale: 1.05 }} theme={theme}>
               <Icon src="/svgs/linkedin.svg" alt="LinkedIn" theme={{ ...theme, isDarkMode }} />
               LinkedIn Profile
             </ContactMethod>
