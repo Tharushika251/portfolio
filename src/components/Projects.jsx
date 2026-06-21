@@ -345,12 +345,46 @@ const Projects = () => {
         "Microservices",
         "API Gateway",
         "Service Discovery"
-      ],
+      ],      
       demoLink: "https://fractalx.org",
       docsLink: "https://fractalx.org/docs",
       codeLink: "https://github.com/fractalx-org/FractalX",
       gradient: "linear-gradient(135deg, #7C3AED, #9D4EDD, #C084FC)",
       imageUrl: "/projects/fractalx.png"
+    },
+    {
+      title: "LIBRARIA - Production-Ready Library Management System",
+      shortTitle: "LIBRARIA",
+      date: "June 2026 - Present",
+      status: "current",
+      achievement:
+        "Enterprise-grade library system for a Public Library with 10+ database tables, JWT authentication, role-based access, and offline-first architecture.",
+      description:
+        "A comprehensive, production-ready digital library management system built for a public library. The system handles complete library operations including book cataloging, patron management, borrowing/returning workflows, fine calculation (with weekend/holiday skipping), membership management, and automated notifications. Features include multi-role access (Librarian, Assistant, Patron), four membership types (Student, Teacher, Staff, General), JWT authentication with refresh tokens, rate limiting, and offline-first strategy for Sri Lanka's intermittent internet conditions. The system follows a microservices-ready architecture with Redis caching, BullMQ queues, and containerization support.",
+      tech: [
+        "Node.js",
+        "Express.js",
+        "TypeScript",
+        "React.js",
+        "Vite",
+        "MySQL 8.0",
+        "Sequelize ORM",
+        "JWT Auth",
+        "Redis",
+        "BullMQ",
+        "Docker",
+        "Redux Toolkit",
+        "Material-UI",
+        "Bcrypt",
+        "Rate Limiting",
+        "REST API",
+        "Postman"
+      ],
+      demoLink: "#",
+      // docsLink: "#",
+      codeLink: "https://github.com/Tharushika251/LIBRARIA", 
+      gradient: "linear-gradient(135deg, #1E40AF, #3B82F6, #60A5FA)",
+      imageUrl: "/projects/libraria.png"
     },
     {
       title: "Social Media Application - Pingy",
