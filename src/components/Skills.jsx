@@ -265,6 +265,7 @@ const Skills = () => {
         { name: '.NET', icon: '/svgs/dotnet.svg' },
         { name: 'PHP', icon: '/svgs/php.svg' },
         { name: 'Java', icon: '/svgs/java.svg' },
+        { name: 'C#', icon: '/svgs/csharp.svg' },
       ],
     },
     {

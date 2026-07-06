@@ -125,6 +125,8 @@ const ProjectHeader = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 `
 
 const ProjectTitle = styled.h3`
@@ -137,6 +139,14 @@ const ProjectTitle = styled.h3`
   background-clip: text;
   flex: 1;
   margin-right: 1rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  line-height: 1.3;
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `
 
 const ProjectDate = styled(motion.span)`
@@ -155,15 +165,23 @@ const ProjectDate = styled(motion.span)`
   font-weight: 600;
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+  }
 `
 
 const ProjectImage = styled(motion.div)`
   height: 220px;
-  background: ${({ theme, gradient, imageUrl }) =>
-    imageUrl ? `url(${imageUrl})` : (gradient || theme.gradient)};
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: ${({ theme, gradient, imageUrl }) => {
+    if (imageUrl) {
+      return `url(${imageUrl}) center/contain no-repeat, ${gradient || theme.gradient}`;
+    }
+    return gradient || theme.gradient;
+  }};
+  background-color: ${({ theme }) => theme.background};
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -196,6 +214,14 @@ const ProjectImage = styled(motion.div)`
     padding: 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     transition: all 0.3s ease;
+    font-size: 1.2rem;
+    max-width: 70%;
+    word-wrap: break-word;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+      padding: 0.8rem;
+    }
   }
 
   ${ProjectCard}:hover &::before {
@@ -217,6 +243,10 @@ const ProjectContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+  }
 `
 
 const ProjectDescription = styled.p`
@@ -226,6 +256,27 @@ const ProjectDescription = styled.p`
   opacity: 0.9;
   flex: 1;
   font-size: 1rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
+`
+
+const AchievementText = styled.div`
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.primary};
+  line-height: 1.5;
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  background: ${({ theme }) => theme.background}40;
+  border-radius: 10px;
+  border-left: 3px solid ${({ theme }) => theme.primary};
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
 `
 
 const TechStack = styled.div`
@@ -252,12 +303,22 @@ const TechTag = styled(motion.span)`
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 5px 15px ${({ theme }) => theme.primary}40;
   }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+  }
 `
 
 const ProjectLinks = styled.div`
   display: flex;
   gap: 1.2rem;
   margin-top: auto;
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    gap: 0.8rem;
+  }
 `
 
 const ProjectLink = styled(motion.a)`
@@ -276,11 +337,18 @@ const ProjectLink = styled(motion.a)`
   cursor: pointer;
   flex: 1;
   justify-content: center;
+  min-width: 120px;
 
   &:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 10px 25px ${({ theme }) => theme.primary}50;
     text-decoration: none;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    padding: 0.6rem 1rem;
+    min-width: 100px;
   }
 `
 
@@ -317,6 +385,25 @@ const ProjectHighlight = styled(motion.div)`
   letter-spacing: 0.5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   z-index: 3;
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    top: 5px;
+    right: 5px;
+  }
+`
+
+const SubTitle = styled.div`
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 0.2rem;
+  -webkit-text-fill-color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.text};
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
 `
 
 const Projects = () => {
@@ -324,12 +411,12 @@ const Projects = () => {
 
   const projects = [
     {
-      title: "FractalX - Automated Monolith-to-Microservices Migration Framework",
-      shortTitle: "FractalX",
+      title: "FractalX",
+      subtitle: "Automated Monolith-to-Microservices Migration Framework",
       date: "2025 - Present",
       status: "research",
       achievement:
-        "Transforms Spring Boot monoliths into production-ready microservices in under one minute.",
+        "⚡ Transforms Spring Boot monoliths into production-ready microservices in under one minute.",
       description:
         "Designed and implemented the Decomposed Service Communication and Unified API Interface module for FractalX, a research framework that automates migration of Spring Boot monoliths into cloud-ready microservices. Built auto-generated gRPC communication, service discovery, API gateway integration, observability instrumentation, and resilience mechanisms. The framework uses AST-based static analysis to generate production-ready microservice ecosystems with distributed tracing, saga orchestration, health monitoring, and containerized deployment.",
       tech: [
@@ -391,6 +478,7 @@ const Projects = () => {
       shortTitle: "Pingy",
       date: "Aug 2025",
       status: "recent",
+      achievement: "🚀 Modern social platform with real-time features",
       description: "Modern social media platform with real-time chat, posts, stories, and user engagement features. Integrated Clerk authentication and Supabase for real-time updates.",
       tech: ["React.js", "Clerk Auth", "Supabase", "Node.js", "Express.js", "MongoDB"],
       demoLink: '#',
@@ -399,10 +487,11 @@ const Projects = () => {
       imageUrl: "/projects/pingy.png"
     },
     {
-      title: "Quiz Management System - AcademIQ",
-      shortTitle: "AcademIQ",
+      title: "AcademIQ",
+      subtitle: "Quiz Management System",
       date: "June 2025",
       status: "recent",
+      achievement: "📚 Role-based quiz platform with real-time analytics",
       description: "Role-based quiz platform for teachers and students with real-time timers, performance analytics, and global leaderboards. Features JWT-based authentication and RBAC.",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
       demoLink: '#',
@@ -411,10 +500,11 @@ const Projects = () => {
       imageUrl: "/projects/academiq.png"
     },
     {
-      title: "Cloud-Native Food Ordering System - Foodie",
-      shortTitle: "Foodie",
+      title: "Foodie",
+      subtitle: "Cloud-Native Food Ordering System",
       date: "Apr 2025",
       status: "completed",
+      achievement: "🍔 Microservices-based food delivery platform",
       description: "Microservices-based food ordering and delivery system with Docker and Kubernetes containerization. Features role-based authentication for Customers, Restaurant Admins, and Delivery Personnel.",
       tech: ["React.js", "Node.js", "Docker", "Kubernetes", "MongoDB", "Supabase"],
       demoLink: '#',
@@ -424,9 +514,10 @@ const Projects = () => {
     },
     {
       title: "Rest Countries API",
-      shortTitle: "Rest Countries API",
+      subtitle: "Country Information Explorer",
       date: "Mar 2025",
       status: "completed",
+      achievement: "🌍 Interactive country data visualization",
       description: "Responsive React application integrating REST Countries API with detailed country views, search functionality, and local storage for session management.",
       tech: ["React.js", "REST API", "CSS3", "Local Storage"],
       demoLink: '#',
@@ -435,11 +526,12 @@ const Projects = () => {
       imageUrl: "/projects/restCountriesAPI.png"
     },
     {
-      title: "EV Charging Station Booking System - EVConnect",
-      shortTitle: "EVConnect",
+      title: "EVConnect",
+      subtitle: "EV Charging Station Booking System",
       date: "Oct 2025 - Present",
       status: "completed",
-      description:   "Enterprise-grade EV charging station booking platform supporting user management, charging station administration, reservation workflows, availability tracking, and booking lifecycle management. Built using a multi-tier architecture with .NET Web APIs, React, MongoDB, and Android integration.",
+      achievement: "🔌 Enterprise-grade EV charging management platform",
+      description: "Enterprise-grade EV charging station booking platform supporting user management, charging station administration, reservation workflows, availability tracking, and booking lifecycle management. Built using a multi-tier architecture with .NET Web APIs, React, MongoDB, and Android integration.",
       tech: ["C# (.NET)", "Web API", "MongoDB", "React.js", "Bootstrap", "IIS", "Android", "SQLite"],
       demoLink: '#',
       codeLink: "https://github.com/Tharushika251/EVConnect",
@@ -513,7 +605,7 @@ const Projects = () => {
         <ProjectsGrid>
           {projects.map((project, index) => (
             <ProjectCard
-              key={project.title}
+              key={project.title + project.subtitle}
               variants={cardVariants}
               whileHover="hover"
               viewport={{ once: true, margin: "-50px" }}
@@ -534,7 +626,9 @@ const Projects = () => {
                 theme={theme}
                 gradient={project.gradient}
                 imageUrl={project.imageUrl}
-                title={project.shortTitle}
+                title={project.title}
+                role="img"
+                aria-label={`${project.title} project image`}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               />
@@ -542,11 +636,11 @@ const Projects = () => {
               <ProjectContent>
                 <ProjectHeader>
                   <ProjectTitle theme={theme}>
-                    {project.title.split(' - ')[0]}
-                    {project.title.split(' - ')[1] && (
-                      <div style={{ fontSize: '1rem', opacity: 0.8, marginTop: '0.2rem' }}>
-                        {project.title.split(' - ')[1]}
-                      </div>
+                    {project.title}
+                    {project.subtitle && (
+                      <SubTitle theme={theme}>
+                        {project.subtitle}
+                      </SubTitle>
                     )}
                   </ProjectTitle>
                   <ProjectDate
@@ -563,22 +657,19 @@ const Projects = () => {
                 </ProjectHeader>
 
                 {project.achievement && (
-                  <div
-                    style={{
-                      marginBottom: '1rem',
-                      fontWeight: 600,
-                      color: theme.primary,
-                      lineHeight: 1.5
-                    }}
-                  >
-                    ⚡ {project.achievement}
-                  </div>
+                  <AchievementText theme={theme}>
+                    {project.achievement}
+                  </AchievementText>
                 )}
+
+                <ProjectDescription theme={theme}>
+                  {project.description}
+                </ProjectDescription>
 
                 <TechStack>
                   {project.tech.map((tech, techIndex) => (
                     <TechTag
-                      key={tech}
+                      key={`${project.title}-${tech}`}
                       initial={{ opacity: 0, scale: 0, y: 20 }}
                       whileInView={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{
@@ -601,7 +692,7 @@ const Projects = () => {
                 </TechStack>
 
                 <ProjectLinks>
-                  {project.demoLink !== '#' && (
+                  {project.demoLink && project.demoLink !== '#' && (
                     <ProjectLink
                       href={project.demoLink}
                       whileHover={{ scale: 1.05, y: -2 }}
